@@ -5,7 +5,6 @@ export default struct NutrientStats {
   carbon: number = 23
   protein: number = 9
   fat: number = 7
-
   recommendCarbon: number = CommonConstants.RECOMMEND_CARBON
   recommendProtein: number = CommonConstants.RECOMMEND_PROTEIN
   recommendFat: number = CommonConstants.RECOMMEND_FAT
@@ -23,14 +22,14 @@ export default struct NutrientStats {
 
   @Builder StatsBuilder(label: string, value: number, recommend: number, color: ResourceStr) {
     Column({ space: CommonConstants.SPACE_6 }) {
-      Stack(){
+      Stack() {
         Progress({
           value: value,
           total: recommend,
           type: ProgressType.Ring
         })
           .width(95)
-          .style({strokeWidth: CommonConstants.DEFAULT_8})
+          .style({ strokeWidth: CommonConstants.DEFAULT_8 })
           .color(color)
         Column({ space: CommonConstants.SPACE_6 }) {
           Text('摄入推荐')
@@ -41,6 +40,7 @@ export default struct NutrientStats {
             .fontWeight(CommonConstants.FONT_WEIGHT_600)
         }
       }
+
       Text(`${label}（克）`)
         .fontSize(12)
         .fontColor($r('app.color.light_gray'))

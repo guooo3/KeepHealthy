@@ -1,9 +1,10 @@
 import SearchHeader from './SearchHeader'
 import StatsCard from './StatsCard'
+
 @Component
 export default struct RecordIndex {
   build() {
-    Column(){
+    Column() {
       // 1.头部搜索栏
       SearchHeader()
 
