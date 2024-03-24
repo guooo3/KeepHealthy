@@ -3,18 +3,18 @@ import DateUtil from '../../common/utils/DateUtil'
 import CalorieStats from './CalorieStats'
 import DatePickDialog from './DatePickDialog'
 import NutrientStats from './NutrientStats'
+
 @Component
-@Preview
 export default struct StatsCard {
   @StorageProp('selectedDate') selectedDate: number = DateUtil.beginTimeOfDay(new Date())
   controller: CustomDialogController = new CustomDialogController({
-    builder: DatePickDialog({selectedDate: new Date(this.selectedDate)})
+    builder: DatePickDialog({ selectedDate: new Date(this.selectedDate) })
   })
 
   build() {
-    Column(){
+    Column() {
       // 1.日期信息
-      Row(){
+      Row() {
         Text(DateUtil.formatDate(this.selectedDate))
           .fontColor($r('app.color.secondary_color'))
         Image($r('app.media.ic_public_spinner'))
@@ -25,7 +25,7 @@ export default struct StatsCard {
       .padding(CommonConstants.SPACE_12)
 
       // 2.统计信息
-      Swiper(){
+      Swiper() {
         // 2.1.热量统计
         CalorieStats()
         // 2.2.营养素统计
@@ -34,7 +34,7 @@ export default struct StatsCard {
       .backgroundColor(Color.White)
       .width('100%')
       .borderRadius(CommonConstants.DEFAULT_18)
-      .indicatorStyle({selectedColor: $r('app.color.primary_color')})
+      .indicatorStyle({ selectedColor: $r('app.color.primary_color') })
 
     }
     .width(CommonConstants.THOUSANDTH_940)

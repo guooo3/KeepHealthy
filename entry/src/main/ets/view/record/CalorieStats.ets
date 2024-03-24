@@ -15,7 +15,7 @@ export default struct CalorieStats {
       // 1.饮食摄入
       this.StatsBuilder('饮食摄入', this.intake)
       // 2.还可以吃
-      Stack(){
+      Stack() {
         //2.1.进度条
         Progress({
           value: this.intake,
@@ -23,14 +23,13 @@ export default struct CalorieStats {
           type: ProgressType.Ring
         })
           .width(120)
-          .style({strokeWidth: CommonConstants.DEFAULT_8})
+          .style({ strokeWidth: CommonConstants.DEFAULT_8 })
           .color($r('app.color.primary_color'))
         //2.2.统计数据
         this.StatsBuilder('还可以吃', this.remainCalorie(), `推荐${this.recommend}千卡`)
       }
       // 3.运动消耗
       this.StatsBuilder('运动消耗', this.expend)
-
     }
     .width('100%')
     .justifyContent(FlexAlign.SpaceEvenly)

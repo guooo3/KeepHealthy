@@ -12,7 +12,7 @@ struct Index {
         .width(22)
         .fillColor(this.selectedColor(index))
       Text(title)
-        .fontSize(24)
+        .fontSize(18)
         .fontColor(this.selectedColor(index))
     }
   }
