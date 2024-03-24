@@ -1,3 +1,4 @@
+import RecordList from './RecordList'
 import SearchHeader from './SearchHeader'
 import StatsCard from './StatsCard'
 
@@ -12,8 +13,7 @@ export default struct RecordIndex {
       StatsCard()
 
       // 3.记录列表
-      Text('饮食记录页面')
-
+      RecordList().layoutWeight(1)
     }
     .width('100%')
     .height('100%')
