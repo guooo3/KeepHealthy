@@ -1,5 +1,4 @@
 import common from '@ohos.app.ability.common'
-import preferences from '@ohos.data.preferences'
 import router from '@ohos.router'
 import PreferenceUtil from '../common/utils/PreferenceUtil'
 import UserPrivacyDialog from '../view/welcome/UserPrivacyDialog'
