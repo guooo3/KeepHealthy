@@ -1,10 +1,19 @@
+import BreakpointType from '../common/bean/BreanpointType'
+import BreakpointConstants from '../common/constants/BreakpointConstants'
 import { CommonConstants } from '../common/constants/CommonConstants'
+import BreakpointSystem from '../common/utils/BreakpointSystem'
 import RecordIndex from '../view/record/RecordIndex'
 
 @Entry
 @Component
 struct Index {
   @State currentIndex: number = 0
+  private breakpointSystem: BreakpointSystem = new BreakpointSystem()
+  @StorageProp('currentBreakpoint') currentBreakpoint: string = BreakpointConstants.BREAKPOINT_SM
+
+  aboutToAppear() {
+    this.breakpointSystem.register()
+  }
 
   @Builder TabBarBuilder(title: ResourceStr, image: ResourceStr, index: number) {
     Column({ space: CommonConstants.SPACE_8 }) {
@@ -21,8 +30,16 @@ struct Index {
     return this.currentIndex == index ? $r('app.color.primary_color') : $r('app.color.gray')
   }
 
+  // chooseBarPosition() {
+  //   return {
+  //     sm: BarPosition.End,
+  //     md: BarPosition.Start,
+  //     lg: BarPosition.Start,
+  //   }[this.currentBreakpoint]
+  // }
+
   build() {
-    Tabs({ barPosition: BarPosition.End }) {
+    Tabs({ barPosition: BreakpointConstants.BAR_POSITION.getValue(this.currentBreakpoint) }) {
       TabContent() {
         RecordIndex()
       }
@@ -42,5 +59,10 @@ struct Index {
     .width('100%')
     .height('100%')
     .onChange(index => this.currentIndex = index)
+    .vertical(new BreakpointType({
+      sm: false,
+      md: true,
+      lg: true
+    }).getValue(this.currentBreakpoint))
   }
 }

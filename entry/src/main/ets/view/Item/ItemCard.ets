@@ -1,7 +1,6 @@
 import { CommonConstants } from '../../common/constants/CommonConstants'
 
 @Component
-@Preview
 export default struct ItemCard {
   @Prop amount: number
 

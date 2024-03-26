@@ -1,3 +1,4 @@
+import BreakpointConstants from '../../common/constants/BreakpointConstants'
 import { CommonConstants } from '../../common/constants/CommonConstants'
 import DateUtil from '../../common/utils/DateUtil'
 import CalorieStats from './CalorieStats'
@@ -7,6 +8,7 @@ import NutrientStats from './NutrientStats'
 @Preview
 @Component
 export default struct StatsCard {
+  @StorageProp('currentBreakpoint') currentBreakpoint: string = BreakpointConstants.BREAKPOINT_SM
   @StorageProp('selectedDate') selectedDate: number = DateUtil.beginTimeOfDay(new Date())
   controller: CustomDialogController = new CustomDialogController({
     builder: DatePickDialog({ selectedDate: new Date(this.selectedDate) })
@@ -38,7 +40,8 @@ export default struct StatsCard {
       .width('100%')
       .borderRadius(CommonConstants.DEFAULT_18)
       .indicatorStyle({ selectedColor: $r('app.color.primary_color') })
-
+      .displayCount(BreakpointConstants.DISPLAY_COUNT.getValue(this.currentBreakpoint))
+      .indicator(BreakpointConstants.INDICATOR.getValue(this.currentBreakpoint))
     }
     .width(CommonConstants.THOUSANDTH_940)
     .backgroundColor($r('app.color.stats_title_bgc'))
