@@ -3,11 +3,13 @@ import { CommonConstants } from '../common/constants/CommonConstants'
 import ItemCard from '../view/Item/ItemCard'
 import ItemList from '../view/Item/ItemList'
 import ItemPanelHeader from '../view/Item/ItemPanelHeader'
+import NumberKeyboard from '../view/Item/NumberKeyboard'
 
 @Entry
 @Component
 struct ItemIndex {
   @State amount: number = 1
+  @State value: string = ''
   @State showPanel: boolean = false
 
   build() {
@@ -15,19 +17,32 @@ struct ItemIndex {
       // 1.头部导航
       this.Header()
       // 2.列表
-      ItemList({ showPanel: $showPanel })
+      ItemList({ showPanel: $showPanel, amount: $amount, value: $value })
         .layoutWeight(1)
       // 3.底部面板
       Panel(this.showPanel) {
-        Button('关闭').onClick(() => this.showPanel = false)
-
         // 3.1.顶部日期
         ItemPanelHeader()
         // 3.2.记录项卡片
         ItemCard({ amount: this.amount })
         // 3.3.数字键盘
-
+        NumberKeyboard({amount: $amount , value: $value})
         // 3.4.底部按钮
+        Row({ space: CommonConstants.SPACE_8 }) {
+          Button('取消')
+            .backgroundColor($r('app.color.light_gray'))
+            .width(120)
+            .borderRadius(6)
+            .type(ButtonType.Normal)
+            .onClick(()=> this.showPanel = false)
+          Button('提交')
+            .backgroundColor($r('app.color.primary_color'))
+            .width(120)
+            .borderRadius(6)
+            .type(ButtonType.Normal)
+            .onClick(()=> this.showPanel = false)
+        }
+        .margin({top: 13})
       }
       .mode(PanelMode.Full)
       .type(PanelType.Minibar)

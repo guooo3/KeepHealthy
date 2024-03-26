@@ -3,6 +3,8 @@ import { CommonConstants } from '../../common/constants/CommonConstants'
 @Component
 export default struct ItemList {
   @Link showPanel: boolean
+  @Link amount: number
+  @Link value: string
 
   build() {
     Tabs() {
@@ -45,11 +47,15 @@ export default struct ItemList {
             Image($r('app.media.ic_public_add_norm_filled'))
               .width(18)
               .fillColor($r('app.color.primary_color'))
+              .onClick(() => {
+                this.showPanel = true
+                this.amount = 1
+                this.value = ''
+              })
           }
           .width('100%')
           .padding(CommonConstants.SPACE_6)
         }
-        .onClick(() => this.showPanel = true)
       })
     }
     .width('100%')

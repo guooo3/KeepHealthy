@@ -4,6 +4,7 @@ import CalorieStats from './CalorieStats'
 import DatePickDialog from './DatePickDialog'
 import NutrientStats from './NutrientStats'
 
+@Preview
 @Component
 export default struct StatsCard {
   @StorageProp('selectedDate') selectedDate: number = DateUtil.beginTimeOfDay(new Date())
@@ -16,7 +17,9 @@ export default struct StatsCard {
       // 1.日期信息
       Row() {
         Text(DateUtil.formatDate(this.selectedDate))
+          .textAlign(TextAlign.End)
           .fontColor($r('app.color.secondary_color'))
+
         Image($r('app.media.ic_public_spinner'))
           .width(20)
           .fillColor($r('app.color.secondary_color'))
