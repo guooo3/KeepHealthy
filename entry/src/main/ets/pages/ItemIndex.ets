@@ -4,6 +4,7 @@ import ItemCard from '../view/Item/ItemCard'
 import ItemList from '../view/Item/ItemList'
 import ItemPanelHeader from '../view/Item/ItemPanelHeader'
 import NumberKeyboard from '../view/Item/NumberKeyboard'
+import RecordItem from '../viewmodel/RecordItem'
 
 @Entry
 @Component
@@ -11,20 +12,29 @@ struct ItemIndex {
   @State amount: number = 1
   @State value: string = ''
   @State showPanel: boolean = false
+  @State item: RecordItem = null
 
+  onPanelShow(item: RecordItem) {
+    this.showPanel = true
+    this.amount = 1
+    this.value = ''
+    this.item = item
+  }
   build() {
     Column() {
       // 1.头部导航
       this.Header()
       // 2.列表
-      ItemList({ showPanel: $showPanel, amount: $amount, value: $value })
+      ItemList({ showPanel: this.onPanelShow.bind(this)})
         .layoutWeight(1)
       // 3.底部面板
       Panel(this.showPanel) {
         // 3.1.顶部日期
         ItemPanelHeader()
         // 3.2.记录项卡片
-        ItemCard({ amount: this.amount })
+        if (this.item) {
+          ItemCard({ amount: this.amount,item: $item})
+        }
         // 3.3.数字键盘
         NumberKeyboard({amount: $amount , value: $value})
         // 3.4.底部按钮
