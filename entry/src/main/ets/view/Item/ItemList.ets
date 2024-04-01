@@ -16,7 +16,7 @@ export default struct ItemList {
       }
       .tabBar('全部')
 
-      ForEach(ItemModel.listItemGroupByCategory(this.isFood), (group: GroupInfo) => {
+      ForEach(ItemModel.listItemGroupByCategory(this.isFood), (group: GroupInfo<ItemCategory, RecordItem>) => {
         TabContent() {
           this.TabContentBuilder(group.items)
         }
