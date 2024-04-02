@@ -1,7 +1,7 @@
 import relationalStore from '@ohos.data.relationalStore'
 import common from '@ohos.app.ability.common'
 import Logger from './Logger'
-import { ColumnInfo } from '../bean/ColumnInfo'
+import { ColumnInfo, ColumnType } from '../bean/ColumnInfo'
 
 const DB_FILENAME: string = 'KeepHealthy.db'
 

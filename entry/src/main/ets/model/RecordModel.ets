@@ -1,7 +1,7 @@
 import relationalStore from '@ohos.data.relationalStore'
 import { ColumnInfo, ColumnType } from '../common/bean/ColumnInfo'
 import RecordPO from '../common/bean/RecordPO'
-import DbUtil from '../common/utils/DbUtil1'
+import DbUtil from '../common/utils/DbUtil'
 
 const CREATE_TABLE_SQL: string = `
  CREATE TABLE IF NOT EXISTS record (
